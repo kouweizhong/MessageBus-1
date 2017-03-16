@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using LinkDotNet.MessageHandling.Contracts;
 
 namespace LinkDotNet.MessageHandling
@@ -21,13 +22,16 @@ namespace LinkDotNet.MessageHandling
         public void Send<T>(T message) where T : IMessage
         {
             var type = typeof(T);
-            if (!_handler.ContainsKey(type))
+
+            var executingHandler = GetExecutingHandler<T>(type);
+
+            if (!executingHandler.Any())
             {
                 return;
             }
 
             // Call every handler
-            foreach (var actionHandler in _handler[type])
+            foreach (var actionHandler in executingHandler)
             {
                 var first = actionHandler as Action<T>;
                 if (first != null)
@@ -62,6 +66,16 @@ namespace LinkDotNet.MessageHandling
         public void Subscribe<T>(Action<T> action) where T : IMessage
         {
             AddHandlerToMessageType(typeof(T), action);
+        }
+
+        private List<Delegate> GetExecutingHandler<T>(Type type) where T : IMessage
+        {
+            var executedHandler = new List<Delegate>();
+            foreach (var handler in _handler.Keys.Where(handler => handler.IsAssignableFrom(type)))
+            {
+                executedHandler.AddRange(_handler[handler]);
+            }
+            return executedHandler;
         }
 
         private void AddHandlerToMessageType(Type messageType, Delegate action)
