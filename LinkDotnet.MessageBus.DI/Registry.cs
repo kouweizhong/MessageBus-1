@@ -1,7 +1,7 @@
-﻿using LinkDotNet.MessageBus.Contracts;
+﻿using LinkDotNet.MessageHandling.Contracts;
 using StructureMap;
 
-namespace LinkDotNet.MessageBus.DI
+namespace LinkDotNet.MessageHandling.DI
 {
     /// <summary>
     /// Class to register the components
@@ -13,7 +13,7 @@ namespace LinkDotNet.MessageBus.DI
         /// </summary>
         public MessageBusRegistry()
         {
-            ForSingletonOf<IMessageBus>().Use<MessageBus>();
+            ForSingletonOf<IMessageBus>().Use<MessageHandling.MessageBus>();
         }
     }
 }

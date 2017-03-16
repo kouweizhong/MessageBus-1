@@ -1,8 +1,8 @@
-﻿using LinkDotNet.MessageBus.Contracts;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using LinkDotNet.MessageHandling.Contracts;
 
-namespace LinkDotNet.MessageBus
+namespace LinkDotNet.MessageHandling
 {
     /// <summary>
     /// Lean and mean implementation of the messagebus
@@ -29,15 +29,17 @@ namespace LinkDotNet.MessageBus
             // Call every handler
             foreach (var actionHandler in _handler[type])
             {
-                if (actionHandler is Action<T> handler)
+                var first = actionHandler as Action<T>;
+                if (first != null)
                 {
-                    handler.Invoke(message);
+                    first.Invoke(message);
                     continue;
                 }
 
-                if (actionHandler is Action newHandler)
+                var second = actionHandler as Action;
+                if (second != null)
                 {
-                    newHandler.Invoke();
+                    second.Invoke();
                 }
             }
         }

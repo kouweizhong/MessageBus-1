@@ -1,4 +1,4 @@
-﻿namespace LinkDotNet.MessageBus.Contracts
+﻿namespace LinkDotNet.MessageHandling.Contracts
 {
     /// <summary>
     /// Generic interface for messages

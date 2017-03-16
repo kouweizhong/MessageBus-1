@@ -1,18 +1,17 @@
-﻿using NUnit.Framework;
-using LinkDotNet.MessageBus;
-using LinkDotNet.MessageBus.Contracts;
+﻿using LinkDotNet.MessageHandling.Contracts;
+using NUnit.Framework;
 
-namespace LinkDotnet.MessageBus.Tests
+namespace LinkDotNet.MessageHandling.Tests
 {
     [TestFixture]
     public class MessageBusFixture
     {
-        private LinkDotNet.MessageBus.MessageBus _messageBus;
+        private MessageBus _messageBus;
 
         [SetUp]
         public void SetUp()
         {
-            _messageBus = new LinkDotNet.MessageBus.MessageBus();
+            _messageBus = new MessageBus();
         }
 
         [Test]
@@ -40,7 +39,7 @@ namespace LinkDotnet.MessageBus.Tests
         [Test]
         public void Should_pass_in_parameters()
         {
-            int id = 0;
+            var id = 0;
             _messageBus.Subscribe<AnotherFakeMessage>((msg) => id = msg.Id);
 
             _messageBus.Send(new AnotherFakeMessage(3));
@@ -55,7 +54,7 @@ namespace LinkDotnet.MessageBus.Tests
 
     public class AnotherFakeMessage : IMessage
     {
-        public int Id { get; set; }
+        public int Id { get; private set; }
         public AnotherFakeMessage(int id)
         {
             Id = id;
