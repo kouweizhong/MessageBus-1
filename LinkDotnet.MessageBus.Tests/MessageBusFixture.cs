@@ -46,6 +46,20 @@ namespace LinkDotNet.MessageHandling.Tests
 
             Assert.That(id, Is.EqualTo(3));
         }
+
+        [Test]
+        public void Should_be_covariant()
+        {
+            var baseWasCalled = false;
+            var subWasCalled = false;
+            _messageBus.Subscribe<IMessage>(() => baseWasCalled = true);
+            _messageBus.Subscribe<AnotherFakeMessage>(() => subWasCalled = true);
+
+            _messageBus.Send(new FakeMessage());
+
+            Assert.That(baseWasCalled, Is.True);
+            Assert.That(subWasCalled, Is.False);
+        }
     }
 
     public class FakeMessage : IMessage
