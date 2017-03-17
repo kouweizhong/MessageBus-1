@@ -52,3 +52,11 @@ Thats everything.
 ## Using IoC
 If you want to use Dependency Injection with structuremap just let structuremap scan the MessageBus.DI-Assembly.
 This will create an IMessageBus object which exists only once per lifecycle.
+
+## Advantages
+**So why using a messagebus?**
+The main advanteage is you don't have to create dependencies when they are not useful.
+You can send messages and components can receive it without knowing that this particular component exists.
+Another advantage is you send one message and you can have multiple receiver.
+So you can decouple your components.
+
