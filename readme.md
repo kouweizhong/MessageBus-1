@@ -10,7 +10,7 @@ sending and receiving messages.
 ## Example
 In the following example a class will listen to two types of message and will send a message on its close method:
 ```cs
-using LinkDotNet.MessgeBus.Contract
+using LinkDotNet.MessageHandling.Contracts
 
 public class Foo
     {
