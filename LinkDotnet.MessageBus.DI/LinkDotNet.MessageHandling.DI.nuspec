@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>LinkDotNet.MessageBus.DI</id>
+    <version>0.1</version>
+    <title>LinkDotNet.Messagebus.DI</title>
+    <authors>LinkDotNet</authors>
+    <owners>LinkDotNet</owners>
+    <licenseUrl>https://github.com/linkdotnet/messagebus</licenseUrl>
+    <projectUrl>https://github.com/linkdotnet/messagebus</projectUrl>
+    <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Dependency Injection for LinkDotNet.MessageBss</description>
+    <releaseNotes>First release</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>MessageBus Contracts</tags>
+    <dependencies>
+        <dependency id="StructureMap" version="4.4.3" />
+        <dependency id="LinkDotNet.MessageBus" version="0.1" />
+        <dependency id="LinkDotNet.MessageBus.Contracts" version="0.1" />
+    </dependencies>
+  </metadata>
+  <files>
+        <file src="../bin/Client/LinkDotNet.MessageHandling.DI.dll" target="lib/LinkDotNet.MessageHandling.DI.dll" />
+    </files>
+</package>

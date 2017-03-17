@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>LinkDotNet.MessageBus</id>
+    <version>0.1</version>
+    <title>LinkDotNet.Messagebus</title>
+    <authors>LinkDotNet</authors>
+    <owners>LinkDotNet</owners>
+    <licenseUrl>https://github.com/linkdotnet/messagebus</licenseUrl>
+    <projectUrl>https://github.com/linkdotnet/messagebus</projectUrl>
+    <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A lightweight MessageBus</description>
+    <releaseNotes>First release</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>MessageBus lightweight</tags>
+    <dependencies>
+    	<dependency id="LinkDotNet.MessageBus.Contracts" version="0.1" />
+    </dependencies>
+  </metadata>
+  <files>
+        <file src="../bin/Client/LinkDotNet.MessageHandling.dll" target="lib/LinkDotNet.MessageHandling.dll" />
+    </files>
+</package>

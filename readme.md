@@ -13,37 +13,37 @@ In the following example a class will listen to two types of message and will se
 using LinkDotNet.MessageHandling.Contracts
 
 public class Foo
+{
+    private IMessageBus _messageBus;
+
+    /// <summary>
+    /// c'tor
+    /// </summary>
+    public Foo(IMessageBus messageBus)
     {
-        private IMessageBus _messageBus;
+        messageBus.Subscribe<IMessage>(() => Console.WriteLine("I'm listening to every message"));
+        messageBus.Subscribe<InfoMessage>((msg) => Console.WriteLine("Content: " + msg.InfoText));
 
-        /// <summary>
-        /// c'tor
-        /// </summary>
-        public Foo(IMessageBus messageBus)
-        {
-            messageBus.Subscribe<IMessage>(() => Console.WriteLine("I'm listening to every message"));
-            messageBus.Subscribe<InfoMessage>((msg) => Console.WriteLine("Content: " + msg.InfoText));
-
-            _messageBus = messageBus;
-        }
-
-        /// <summary>
-        /// Closes something
-        /// </summary>
-        public void Close()
-        {
-            _messageBus.Send(new CloseMessage("Closing"));
-        }
+        _messageBus = messageBus;
     }
 
-    public class CloseMessage : IMessage
+    /// <summary>
+    /// Closes something
+    /// </summary>
+    public void Close()
     {
-        public string Reason { get; set; }
+        _messageBus.Send(new CloseMessage("Closing"));
+    }
+}
 
-        public CloseMessage(string reason)
-        {
-            Reason = reason;
-        }
+public class CloseMessage : IMessage
+{
+    public string Reason { get; set; }
+
+    public CloseMessage(string reason)
+    {
+        Reason = reason;
+    }
 }
 ```
 
