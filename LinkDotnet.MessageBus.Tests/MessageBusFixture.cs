@@ -60,6 +60,21 @@ namespace LinkDotNet.MessageHandling.Tests
             Assert.That(baseWasCalled, Is.True);
             Assert.That(subWasCalled, Is.False);
         }
+
+        [Test]
+        public void Should_close_messagebus_and_stay_closed()
+        {
+            var wasCalled = false;
+            var wasSubscribedAfterClose = false;
+            _messageBus.Subscribe<FakeMessage>(() => wasCalled = true);
+            _messageBus.Close();
+            _messageBus.Subscribe<FakeMessage>(() => wasSubscribedAfterClose = true);
+
+            _messageBus.Send(new FakeMessage());
+
+            Assert.That(wasCalled, Is.False);
+            Assert.That(wasSubscribedAfterClose, Is.False);
+        }
     }
 
     public class FakeMessage : IMessage

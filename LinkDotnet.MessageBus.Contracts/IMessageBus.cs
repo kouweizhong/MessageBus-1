@@ -26,5 +26,10 @@ namespace LinkDotNet.MessageHandling.Contracts
         /// <typeparam name="T"></typeparam>
         /// <param name="action">Action to be called, when the message is received</param>
         void Subscribe<T>(Action<T> action) where T : IMessage;
+
+        /// <summary>
+        /// Closes the messagebus, which will unsubscribe all actions
+        /// </summary>
+        void Close();
     }
 }

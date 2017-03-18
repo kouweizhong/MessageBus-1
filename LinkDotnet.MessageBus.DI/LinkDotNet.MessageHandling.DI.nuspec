@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>LinkDotNet.MessageBus.DI</id>
-    <version>0.1</version>
+    <version>0.1.1</version>
     <title>LinkDotNet.Messagebus.DI</title>
     <authors>LinkDotNet</authors>
     <owners>LinkDotNet</owners>
@@ -11,7 +11,7 @@
     <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Dependency Injection for LinkDotNet.MessageBss</description>
-    <releaseNotes>First release</releaseNotes>
+    <releaseNotes>Added the possibility to close the message</releaseNotes>
     <copyright>Copyright 2017</copyright>
     <tags>MessageBus Contracts</tags>
     <dependencies>

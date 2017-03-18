@@ -16,6 +16,19 @@ namespace LinkDotNet.MessageHandling
         private readonly Dictionary<Type, List<Delegate>> _handler = new Dictionary<Type, List<Delegate>>();
 
         /// <summary>
+        /// Determines whether the messagebus can send and receive messages
+        /// </summary>
+        private bool _messageBusOpen;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public MessageBus()
+        {
+            _messageBusOpen = true;
+        }
+
+        /// <summary>
         /// Sends an message
         /// </summary>
         /// <param name="message">The message-object to be send</param>
@@ -68,6 +81,15 @@ namespace LinkDotNet.MessageHandling
             AddHandlerToMessageType(typeof(T), action);
         }
 
+        /// <summary>
+        /// Closes the messagebus
+        /// </summary>
+        public void Close()
+        {
+            _messageBusOpen = false;
+            _handler.Clear();
+        }
+
         private List<Delegate> GetExecutingHandler<T>(Type type) where T : IMessage
         {
             var executedHandler = new List<Delegate>();
@@ -80,6 +102,11 @@ namespace LinkDotNet.MessageHandling
 
         private void AddHandlerToMessageType(Type messageType, Delegate action)
         {
+            if(!_messageBusOpen)
+            {
+                return;
+            }
+
             if (_handler.ContainsKey(messageType))
             {
                 _handler[messageType].Add(action);
