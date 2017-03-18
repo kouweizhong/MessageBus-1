@@ -15,7 +15,7 @@
     <copyright>Copyright 2017</copyright>
     <tags>MessageBus lightweight</tags>
     <dependencies>
-    	<dependency id="LinkDotNet.MessageBus.Contracts" version="0.1" />
+    	<dependency id="LinkDotNet.MessageBus.Contracts" version="0.1.1" />
     </dependencies>
   </metadata>
   <files>
